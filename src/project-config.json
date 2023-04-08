@@ -1,0 +1,8 @@
+{
+  "adminEmail": "ipopovych2004@gmail.com",
+  "role": {
+    "admin": "Admin",
+    "driver": "Driver",
+    "passenger": "Passenger"
+  }
+}
