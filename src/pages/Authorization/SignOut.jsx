@@ -5,6 +5,7 @@ import BaseFormGroup from "../../components/BaseFormGroup";
 import EmailPassForm from "../../components/EmailPassForm";
 import GoogleEmailSignOutForm from "../../components/GoogleEmailSignOutForm";
 import {EMAIL_PASS, GOOGLE_EMAIL} from "../../assets/authMethods";
+import {NavLink} from "react-router-dom";
 
 
 const SignOut = () => {
@@ -64,13 +65,17 @@ const SignOut = () => {
                 }
                 <Row className="justify-content-md-center mb-2 mt-2">
                     <Col sm={6}>
-                        <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>email and password
-                            registration</Alert.Link>
+                        <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>Email and password registration</Alert.Link>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col sm={6}>
-                        <Alert.Link onClick={() => setRegMethod(GOOGLE_EMAIL)}>google account registration</Alert.Link>
+                        <Alert.Link onClick={() => setRegMethod(GOOGLE_EMAIL)}>Google account registration</Alert.Link>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center mt-4">
+                    <Col sm={6}>
+                        <NavLink to={'/login'}>Already have an account? Authorization</NavLink>
                     </Col>
                 </Row>
             </Container>

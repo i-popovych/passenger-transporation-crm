@@ -1,8 +1,7 @@
 import React from 'react';
-import {Alert, Col, Row} from "react-bootstrap";
-import {EMAIL_PASS} from "../../assets/authMethods";
+import {Col, Row} from "react-bootstrap";
 
-const LayoutsHok = (children) => {
+const BaseLayoutsHok = (children) => {
     return (
         <Row className="justify-content-md-center mb-2 mt-4">
             <Col sm={6}>
@@ -12,4 +11,4 @@ const LayoutsHok = (children) => {
     );
 };
 
-export default LayoutsHok;
+export default BaseLayoutsHok;

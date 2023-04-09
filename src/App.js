@@ -10,6 +10,7 @@ import Header from "./pages/Header/Header";
 import {child, get, ref} from "firebase/database";
 import config from "./project-config.json";
 import "../src/styles/main.css"
+import Home from "./pages/Home";
 
 export const AuthUserContext = createContext(null);
 
@@ -65,6 +66,7 @@ const App = () => {
                     <Route path={'/dashboard'} element={<Dashboard/>}/>
                     <Route path={'/create-trip'} element={<CreateTrip/>}/>
                     <Route path={'/trips'} element={<Trips/>}/>
+                    <Route path={'/'} element={<Home/>}/>
                 </Routes>
             </BrowserRouter>
         </AuthUserContext.Provider>
