@@ -9,6 +9,7 @@ import Trips from "./pages/Trips";
 import Header from "./pages/Header/Header";
 import {child, get, ref} from "firebase/database";
 import config from "./project-config.json";
+import "../src/styles/main.css"
 
 export const AuthUserContext = createContext(null);
 
@@ -19,13 +20,19 @@ const App = () => {
     window.currentUser = currentUser
     window.auth = auth
 
-    const setUserDataByUid = async (uid) => {
+    const getUserDataByUid = async (uid) => {
         const snp = await get(child(ref(db), `/users/${uid}`));
         if (snp.exists()) {
             const jsonFields = snp.val();
             if (jsonFields?.email === config.adminEmail) jsonFields.role = config.role.admin
-            setCurrentUser({...jsonFields});
+            return jsonFields
         }
+        return null
+    }
+
+    const setUserDataByUid = async (uid) => {
+        const jsonFields = await getUserDataByUid(uid)
+        if (jsonFields) setCurrentUser({...jsonFields})
     }
 
     useEffect(() => {
@@ -49,7 +56,7 @@ const App = () => {
     }, [])
 
     return (
-        <AuthUserContext.Provider value={{currentUser, setCurrentUser, setUserDataByUid, isInitialize}}>
+        <AuthUserContext.Provider value={{currentUser, setCurrentUser, setUserDataByUid, isInitialize, getUserDataByUid}}>
             <BrowserRouter>
                 <Header/>
                 <Routes>
