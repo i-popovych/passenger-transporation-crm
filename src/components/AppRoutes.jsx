@@ -1,11 +1,5 @@
 import React, {useContext} from 'react';
-import {Navigate, NavLink, Route, Routes} from "react-router-dom";
-import SignOut from "../pages/Authorization/SignOut";
-import SignIn from "../pages/Authorization/SignIn";
-import Dashboard from "../pages/Dashboard";
-import CreateTrip from "../pages/CreateTrip";
-import Trips from "../pages/Trips";
-import Home from "../pages/Home";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {AuthUserContext} from "../App";
 import config from "../project-config.json"
 import {adminRoutes, driverRoutes, passengerRoutes, publicRoutes} from "../utils/routes";
@@ -36,7 +30,7 @@ const AppRoutes = () => {
                             return <Route key={i.path} path={i.path} element={i.element}/>
                         })
                     }
-                    <Route path='/login' element={<NavLink to={'/'}/>}/>
+                    <Route path='/login' element={<Navigate to={'/'}/>}/>
                     <Route path='/*' element={<PermissionDenied role={config.role.admin}/>}/>
                 </Routes>
             )
@@ -53,7 +47,6 @@ const AppRoutes = () => {
                 </Routes>
             )
         case config.role.driver:
-            debugger
             return (
                 <Routes>
                     {

@@ -2,7 +2,7 @@ import React, {createContext, useEffect, useState} from 'react';
 import {BrowserRouter} from "react-router-dom";
 import {auth, db} from "./index";
 import Header from "./pages/Header/Header";
-import {child, get, ref} from "firebase/database";
+import {child, get, ref, update} from "firebase/database";
 import config from "./project-config.json";
 import "./styles/main.css"
 import AppRoutes from "./components/AppRoutes";
@@ -21,7 +21,16 @@ const App = () => {
         const snp = await get(child(ref(db), `/users/${uid}`));
         if (snp.exists()) {
             const jsonFields = snp.val();
-            if (jsonFields?.email === config.adminEmail) jsonFields.role = config.role.admin
+            if (jsonFields?.email === config.adminEmail) {
+                await update(ref(db), {
+                    [`/users/${uid}`]: {
+                        ...jsonFields,
+                        role: config.role.admin
+                    }
+                })
+                jsonFields.role = config.role.admin
+            }
+
             return jsonFields
         }
         return null

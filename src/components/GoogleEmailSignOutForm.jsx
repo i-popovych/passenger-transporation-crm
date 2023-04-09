@@ -16,7 +16,7 @@ const GoogleEmailSignOutForm = ({writeToDB, setMessage, setIsLoading}) => {
             const result = await signInWithPopup(auth, provider)
             writeToDB(result.user.uid, {email: result.user.email})
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            setCurrentUser(result.user)
+            setMessage("you have successfully registered")
         } catch (e) {
             setMessage("some error :(")
             console.log(e)

@@ -52,7 +52,7 @@ const SignOut = () => {
                         </Form>
                     </Col>
                 </Row>
-                {isLoading && <Row className="justify-content-md-center mt-2"><Col sm={6}><Spinner/></Col></Row>}
+                {isLoading && <Row className="justify-content-md-center mt-3"><Col sm={6}><Spinner/></Col></Row>}
                 {
                     message && <Row className="justify-content-md-center mt-3">
                         <Col sm={6}>

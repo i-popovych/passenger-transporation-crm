@@ -8,8 +8,20 @@ import {NavLink} from "react-router-dom";
 
 
 const Header = () => {
-    const {currentUser, isInitialize} = useContext(AuthUserContext);
+    const {currentUser, isInitialize, setCurrentUser} = useContext(AuthUserContext);
     const ref = useRef()
+
+    const handleRemove = async (e) => {
+        e.preventDefault()
+        localStorage.removeItem('uid')
+        try {
+            await signOut(auth)
+            setCurrentUser(null)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
         <Container fluid style={{backgroundColor: "#eceff1", padding: "7px 0px"}}>
             <Row>
@@ -41,12 +53,8 @@ const Header = () => {
                     </Navbar.Text>
                 </Col>
                 <Col sm={2.5}>
-                    {currentUser?.fullName && <Button onClick={(e) => {
-                        e.preventDefault()
-                        localStorage.removeItem('uid')
-                        signOut(auth)
-                    }
-                    } variant='primary'>log out</Button>}
+                    {currentUser?.fullName && <Button onClick={handleRemove}
+                     variant='primary'>log out</Button>}
                     {!currentUser?.fullName &&
                         <NavLink to={'/registration'}><Button className="mr-2">Registration</Button></NavLink>}
                     {!currentUser?.fullName && <NavLink to={'/login'}><Button>Sign in</Button></NavLink>}
