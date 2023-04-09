@@ -7,7 +7,7 @@ import {AuthUserContext} from "../App";
 const provider = new GoogleAuthProvider();
 
 
-const GoogleEmailSignOutForm = ({writeToDB}) => {
+const GoogleEmailSignOutForm = ({writeToDB, setMessage, setIsLoading}) => {
     const {auth} = useContext(Context);
     const {setCurrentUser} = useContext(AuthUserContext)
 
@@ -18,6 +18,7 @@ const GoogleEmailSignOutForm = ({writeToDB}) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             setCurrentUser(result.user)
         } catch (e) {
+            setMessage("some error :(")
             console.log(e)
         }
     }

@@ -11,11 +11,6 @@ const BaseFormGroup = ({regData, setRegData}) => {
                               onChange={(e) => setRegData({...regData, username: e.target.value})}
                 />
             </Form.Group>
-            <Form.Group controlId="password" className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={regData.password}
-                              onChange={(e) => setRegData({...regData, password: e.target.value})}/>
-            </Form.Group>
             <Form.Group controlId="age" className="mb-3">
                 <Form.Label>Age</Form.Label>
                 <Form.Control type="age" placeholder="Enter your age" value={regData.age}

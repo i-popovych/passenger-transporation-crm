@@ -1,7 +1,6 @@
-import React, {useContext, useState} from 'react';
-import {Context} from "../../index";
+import React, {useState} from 'react';
 import {getDatabase, ref, set} from "firebase/database";
-import {Alert, Col, Container, Form, Row} from "react-bootstrap";
+import {Alert, Col, Container, Form, Row, Spinner} from "react-bootstrap";
 import BaseFormGroup from "../../components/BaseFormGroup";
 import EmailPassForm from "../../components/EmailPassForm";
 import GoogleEmailSignOutForm from "../../components/GoogleEmailSignOutForm";
@@ -9,24 +8,28 @@ import {EMAIL_PASS, GOOGLE_EMAIL} from "../../assets/authMethods";
 
 
 const SignOut = () => {
-    const {auth, firestore} = useContext(Context)
-
     const [regData, setRegData] = useState({password: '', username: '', age: '', role: ''})
+    const [isLoading, setIsLoading] = useState(false)
+    const [message, setMessage] = useState(null)
     const [regMethod, setRegMethod] = useState(EMAIL_PASS)
     console.log(regData)
 
-    const setToDB = (uid, regData) => {
+    const setToDB = async (uid, regData) => {
+        debugger
         const db = getDatabase();
-        set(ref(db, 'users/' + uid), {
+        await set(ref(db, 'users/' + uid), {
             ...regData
         });
+        setMessage("You have successfully registered")
+        setIsLoading(false)
     }
 
 
-    const writeToDB = (uid, ...rest) => {
+    const writeToDB = async (uid, ...rest) => {
         const t = Object.assign({}, ...rest);
-        setToDB(uid,
+        await setToDB(uid,
             {username: regData.username, age: regData.age, role: regData.role, ...t})
+
     }
 
     return (
@@ -39,14 +42,30 @@ const SignOut = () => {
                             <BaseFormGroup setRegData={setRegData} regData={regData}/>
                             <br/>
                             {regMethod === EMAIL_PASS &&
-                                <EmailPassForm writeToDB={writeToDB} password={regData.password}/>}
-                            {regMethod === GOOGLE_EMAIL && <GoogleEmailSignOutForm writeToDB={writeToDB}/>}
+                                <EmailPassForm
+                                    setRegData={setRegData} regData={regData}
+                                    setIsLoading={setIsLoading} setMessage={setMessage}
+                                    writeToDB={writeToDB} password={regData.password}/>}
+                            {regMethod === GOOGLE_EMAIL && <GoogleEmailSignOutForm
+                                setIsLoading={setIsLoading} setMessage={setMessage}
+                                writeToDB={writeToDB}/>}
                         </Form>
                     </Col>
                 </Row>
+                {isLoading && <Row className="justify-content-md-center mt-2"><Col sm={6}><Spinner/></Col></Row>}
+                {
+                    message && <Row className="justify-content-md-center mt-2">
+                        <Col sm={6}>
+                            <Alert>
+                                {message}
+                            </Alert>
+                        </Col>
+                    </Row>
+                }
                 <Row className="justify-content-md-center mb-2 mt-4">
                     <Col sm={6}>
-                        <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>email and password registration</Alert.Link>
+                        <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>email and password
+                            registration</Alert.Link>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">

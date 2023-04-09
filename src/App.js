@@ -1,12 +1,10 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {auth, db} from "./index";
-import {Container} from "react-bootstrap";
 import SignOut from "./pages/Authorization/SignOut";
 import SignIn from "./pages/Authorization/SignIn";
 import Dashboard from "./pages/Dashbord";
 import CreateTrip from "./pages/CreateTrip";
-import {signOut} from "firebase/auth";
 import Trips from "./pages/Trips";
 import Header from "./pages/Header/Header";
 import {child, get, ref} from "firebase/database";
@@ -21,7 +19,6 @@ const App = () => {
     window.auth = auth
 
     const setUserDataByUid = async (uid) => {
-        debugger
         const snp = await get(child(ref(db), `/users/${uid}`));
         if (snp.exists()) {
             const jsonFields = snp.val();
@@ -42,19 +39,17 @@ const App = () => {
         const uid = localStorage.getItem('uid');
         if (uid) {
             try {
-                await setUserDataByUid(uid)
+                await setUserDataByUid(uid);
             } catch (e) {
                 console.log(e)
             }
         }
     }, [])
 
-
     return (
         <AuthUserContext.Provider value={{currentUser, setCurrentUser, setUserDataByUid}}>
             <BrowserRouter>
                 <Header/>
-
                 <Routes>
                     <Route path={'/registration'} element={<SignOut/>}/>
                     <Route path={'/login'} element={<SignIn/>}/>
