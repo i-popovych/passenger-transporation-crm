@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 
 
 const Header = () => {
-    const {currentUser} = useContext(AuthUserContext);
+    const {currentUser, isInitialize} = useContext(AuthUserContext);
     const ref = useRef()
     return (
         <>
@@ -34,7 +34,11 @@ const Header = () => {
                         </Col>
                         <Col>
                             <Navbar.Text>
-                                {currentUser?.fullName && currentUser.fullName + ': ' + currentUser.role}
+                                {
+                                    isInitialize
+                                        ? currentUser?.fullName ? currentUser.fullName + ': ' + currentUser.role : "You're not authorized"
+                                        : "Loading..."
+                                }
                             </Navbar.Text>
                         </Col>
                         <Col>

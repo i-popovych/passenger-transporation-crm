@@ -14,6 +14,7 @@ export const AuthUserContext = createContext(null);
 
 const App = () => {
     const [currentUser, setCurrentUser] = useState(null);
+    const [isInitialize, setIsInitialize] = useState(false)
 
     window.currentUser = currentUser
     window.auth = auth
@@ -44,10 +45,11 @@ const App = () => {
                 console.log(e)
             }
         }
+        setIsInitialize(true)
     }, [])
 
     return (
-        <AuthUserContext.Provider value={{currentUser, setCurrentUser, setUserDataByUid}}>
+        <AuthUserContext.Provider value={{currentUser, setCurrentUser, setUserDataByUid, isInitialize}}>
             <BrowserRouter>
                 <Header/>
                 <Routes>
