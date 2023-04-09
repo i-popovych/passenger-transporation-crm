@@ -38,9 +38,9 @@ const EmailPassSignIn = () => {
             <Row className="justify-content-md-center">
                 <Col sm={6}>
                     <Form>
-                        <Form.Group controlId="username" className="mb-3">
+                        <Form.Group controlId="fullName" className="mb-3">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="text" placeholder="Enter username" value={email}
+                            <Form.Control type="text" placeholder="Enter full name" value={email}
                                           onChange={(e) => setEmail(e.target.value)}
                             />
                         </Form.Group>

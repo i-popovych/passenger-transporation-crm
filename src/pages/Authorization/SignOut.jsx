@@ -8,7 +8,7 @@ import {EMAIL_PASS, GOOGLE_EMAIL} from "../../assets/authMethods";
 
 
 const SignOut = () => {
-    const [regData, setRegData] = useState({password: '', username: '', age: '', role: ''})
+    const [regData, setRegData] = useState({password: '', fullName: '', age: '', role: ''})
     const [isLoading, setIsLoading] = useState(false)
     const [message, setMessage] = useState(null)
     const [regMethod, setRegMethod] = useState(EMAIL_PASS)
@@ -28,7 +28,7 @@ const SignOut = () => {
     const writeToDB = async (uid, ...rest) => {
         const t = Object.assign({}, ...rest);
         await setToDB(uid,
-            {username: regData.username, age: regData.age, role: regData.role, ...t})
+            {fullName: regData.fullName, age: regData.age, role: regData.role, ...t})
 
     }
 
@@ -54,7 +54,7 @@ const SignOut = () => {
                 </Row>
                 {isLoading && <Row className="justify-content-md-center mt-2"><Col sm={6}><Spinner/></Col></Row>}
                 {
-                    message && <Row className="justify-content-md-center mt-2">
+                    message && <Row className="justify-content-md-center mt-3">
                         <Col sm={6}>
                             <Alert>
                                 {message}
@@ -62,7 +62,7 @@ const SignOut = () => {
                         </Col>
                     </Row>
                 }
-                <Row className="justify-content-md-center mb-2 mt-4">
+                <Row className="justify-content-md-center mb-2 mt-2">
                     <Col sm={6}>
                         <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>email and password
                             registration</Alert.Link>

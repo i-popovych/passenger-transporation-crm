@@ -34,18 +34,18 @@ const Header = () => {
                         </Col>
                         <Col>
                             <Navbar.Text>
-                                {currentUser?.username && currentUser.username + ': ' + currentUser.role}
+                                {currentUser?.fullName && currentUser.fullName + ': ' + currentUser.role}
                             </Navbar.Text>
                         </Col>
                         <Col>
-                            {currentUser?.username && <Button onClick={(e) => {
+                            {currentUser?.fullName && <Button onClick={(e) => {
                                 e.preventDefault()
                                 localStorage.removeItem('uid')
                                 signOut(auth)
                             }
                             } variant='primary'>log out</Button>}
-                            {!currentUser?.username && <NavLink to={'/registration'}><Button className="mr-1">Registration</Button></NavLink>}
-                            {!currentUser?.username && <NavLink to={'/login'}><Button>Sign in</Button></NavLink>}
+                            {!currentUser?.fullName && <NavLink to={'/registration'}><Button className="mr-1">Registration</Button></NavLink>}
+                            {!currentUser?.fullName && <NavLink to={'/login'}><Button>Sign in</Button></NavLink>}
                         </Col>
                     </Row>
                 </Container>

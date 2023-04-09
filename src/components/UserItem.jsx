@@ -6,7 +6,7 @@ import {db, auth} from "../index";
 
 const UserItem = ({uid, ...userData}) => {
     const {
-        username, age, role
+        fullName, age, role
     } = userData
     const [isChange, setIsChange] = useState(false)
     const [changedRole, setChangedRole] = useState(null)
@@ -48,7 +48,7 @@ const UserItem = ({uid, ...userData}) => {
                     <Row>
                         <Col>
 
-                            <Card.Title>{username}</Card.Title>
+                            <Card.Title>{fullName}</Card.Title>
                             <Card.Text>
                                 age: {age}
                             </Card.Text>

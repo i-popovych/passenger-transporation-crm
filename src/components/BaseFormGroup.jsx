@@ -5,10 +5,10 @@ const BaseFormGroup = ({regData, setRegData}) => {
     console.log(regData)
     return (
         <>
-            <Form.Group controlId="username" className="mb-3">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter username" value={regData.username}
-                              onChange={(e) => setRegData({...regData, username: e.target.value})}
+            <Form.Group controlId="fullName" className="mb-3">
+                <Form.Label>Full name</Form.Label>
+                <Form.Control type="text" placeholder="Enter full name" value={regData.fullName}
+                              onChange={(e) => setRegData({...regData, fullName: e.target.value})}
                 />
             </Form.Group>
             <Form.Group controlId="age" className="mb-3">
