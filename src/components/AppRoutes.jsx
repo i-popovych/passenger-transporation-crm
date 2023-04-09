@@ -49,7 +49,7 @@ const AppRoutes = () => {
                         })
                     }
                     <Route path='/login' element={<Navigate to={'/'}/>}/>
-                    <Route path='/*' element={<PermissionDenied role={config.role.admin}/>}/>
+                    <Route path='/*' element={<PermissionDenied role={config.role.passenger}/>}/>
                 </Routes>
             )
         case config.role.driver:
@@ -62,7 +62,7 @@ const AppRoutes = () => {
                         })
                     }
                     <Route path='/login' element={<Navigate to={'/'}/>}/>
-                    <Route path='/*' element={<PermissionDenied role={config.role.admin}/>}/>
+                    <Route path='/*' element={<PermissionDenied role={config.role.driver}/>}/>
                 </Routes>
             )
     }
