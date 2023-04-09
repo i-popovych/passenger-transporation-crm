@@ -1,16 +1,12 @@
 import React, {createContext, useEffect, useState} from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {auth, db} from "./index";
-import SignOut from "./pages/Authorization/SignOut";
-import SignIn from "./pages/Authorization/SignIn";
-import Dashboard from "./pages/Dashbord";
-import CreateTrip from "./pages/CreateTrip";
-import Trips from "./pages/Trips";
 import Header from "./pages/Header/Header";
 import {child, get, ref} from "firebase/database";
 import config from "./project-config.json";
-import "../src/styles/main.css"
-import Home from "./pages/Home";
+import "./styles/main.css"
+import AppRoutes from "./components/AppRoutes";
+import {Spinner} from "react-bootstrap";
 
 export const AuthUserContext = createContext(null);
 
@@ -36,14 +32,6 @@ const App = () => {
         if (jsonFields) setCurrentUser({...jsonFields})
     }
 
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            setCurrentUser(user);
-        });
-
-        return unsubscribe;
-    }, []);
-
     useEffect(async () => {
         const uid = localStorage.getItem('uid');
         if (uid) {
@@ -56,18 +44,13 @@ const App = () => {
         setIsInitialize(true)
     }, [])
 
+    if (!isInitialize) return <div className="d-flex justify-content-center"><Spinner/></div>
+
     return (
         <AuthUserContext.Provider value={{currentUser, setCurrentUser, setUserDataByUid, isInitialize, getUserDataByUid}}>
             <BrowserRouter>
                 <Header/>
-                <Routes>
-                    <Route path={'/registration'} element={<SignOut/>}/>
-                    <Route path={'/login'} element={<SignIn/>}/>
-                    <Route path={'/dashboard'} element={<Dashboard/>}/>
-                    <Route path={'/create-trip'} element={<CreateTrip/>}/>
-                    <Route path={'/trips'} element={<Trips/>}/>
-                    <Route path={'/'} element={<Home/>}/>
-                </Routes>
+                <AppRoutes/>
             </BrowserRouter>
         </AuthUserContext.Provider>
     );

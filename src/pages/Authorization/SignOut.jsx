@@ -4,7 +4,7 @@ import {Alert, Col, Container, Form, Row, Spinner} from "react-bootstrap";
 import BaseFormGroup from "../../components/BaseFormGroup";
 import EmailPassForm from "../../components/EmailPassForm";
 import GoogleEmailSignOutForm from "../../components/GoogleEmailSignOutForm";
-import {EMAIL_PASS, GOOGLE_EMAIL} from "../../assets/authMethods";
+import {EMAIL_PASS, GOOGLE_EMAIL} from "../../utils/authMethods";
 import {NavLink} from "react-router-dom";
 
 
@@ -16,7 +16,6 @@ const SignOut = () => {
     console.log(regData)
 
     const setToDB = async (uid, regData) => {
-        debugger
         const db = getDatabase();
         await set(ref(db, 'users/' + uid), {
             ...regData

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import EmailPassSignIn from "../../components/EmailPassSignIn";
 import {Alert, Col, Container, Row} from "react-bootstrap";
-import {EMAIL_PASS, GOOGLE_EMAIL} from "../../assets/authMethods";
+import {EMAIL_PASS, GOOGLE_EMAIL} from "../../utils/authMethods";
 import BaseLayoutsHok from "./BaseLayoutsHok";
 import GoogleEmailSignInForm from "../../components/GoogleEmailSignInForm";
 import {NavLink} from "react-router-dom";
