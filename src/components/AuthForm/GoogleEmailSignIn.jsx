@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import {Context} from "../index";
-import {AuthUserContext} from "../App";
+import {Context} from "../../index";
+import {AuthUserContext} from "../../App";
 import {set} from "firebase/database";
 
 const provider = new GoogleAuthProvider();

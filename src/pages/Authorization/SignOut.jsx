@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {getDatabase, ref, set} from "firebase/database";
 import {Alert, Col, Container, Form, Row, Spinner} from "react-bootstrap";
-import BaseFormGroup from "../../components/BaseFormGroup";
-import EmailPassSignOutForm from "../../components/EmailPassSignOutForm";
-import GoogleEmailSignOutForm from "../../components/GoogleEmailSignOutForm";
+import BaseFormGroup from "../../components/AuthForm/BaseFormGroup";
+import EmailPassSignOut from "../../components/AuthForm/EmailPassSignOut";
+import GoogleEmailSignOut from "../../components/AuthForm/GoogleEmailSignOut";
 import {EMAIL_PASS, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
 import {NavLink} from "react-router-dom";
-import AuthByNumber from "../../components/Auth/AuthByNumber";
+import AuthByNumber from "../../components/AuthForm/AuthByNumber";
 
 
 const SignOut = () => {
@@ -43,11 +43,11 @@ const SignOut = () => {
                             <BaseFormGroup setRegData={setRegData} regData={regData}/>
                             <br/>
                             {regMethod === EMAIL_PASS &&
-                                <EmailPassSignOutForm
+                                <EmailPassSignOut
                                     setRegData={setRegData} regData={regData}
                                     setIsLoading={setIsLoading} setMessage={setMessage}
                                     writeToDB={writeToDB} password={regData.password}/>}
-                            {regMethod === GOOGLE_EMAIL && <GoogleEmailSignOutForm
+                            {regMethod === GOOGLE_EMAIL && <GoogleEmailSignOut
                                 setIsLoading={setIsLoading} setMessage={setMessage}
                                 writeToDB={writeToDB}/>}
                             {regMethod === NUMBER && <AuthByNumber setIsLoading={setIsLoading} setMessage={setMessage}

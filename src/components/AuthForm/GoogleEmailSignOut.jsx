@@ -1,13 +1,13 @@
 import React, {useContext} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import {Context} from "../index";
-import {AuthUserContext} from "../App";
+import {Context} from "../../index";
+import {AuthUserContext} from "../../App";
 
 const provider = new GoogleAuthProvider();
 
 
-const GoogleEmailSignOutForm = ({writeToDB, setMessage, setIsLoading}) => {
+const GoogleEmailSignOut = ({writeToDB, setMessage, setIsLoading}) => {
     const {auth} = useContext(Context);
     const {setCurrentUser} = useContext(AuthUserContext)
 
@@ -35,4 +35,4 @@ const GoogleEmailSignOutForm = ({writeToDB, setMessage, setIsLoading}) => {
     )
 };
 
-export default GoogleEmailSignOutForm;
+export default GoogleEmailSignOut;

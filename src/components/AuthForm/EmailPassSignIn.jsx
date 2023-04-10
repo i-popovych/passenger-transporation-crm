@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
-import {Context, db} from "../index";
-import {AuthUserContext} from "../App";
+import {Context, db} from "../../index";
+import {AuthUserContext} from "../../App";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {getDatabase, ref, child, get} from "firebase/database";
-import config from "../project-config.json"
+import config from "../../project-config.json"
 
 const EmailPassSignIn = ({setMessage, setIsLoading}) => {
     const {auth, firestore} = useContext(Context)

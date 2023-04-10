@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import EmailPassSignIn from "../../components/EmailPassSignIn";
+import EmailPassSignIn from "../../components/AuthForm/EmailPassSignIn";
 import {Alert, Col, Container, Row, Spinner} from "react-bootstrap";
 import {EMAIL_PASS, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
-import GoogleEmailSignInForm from "../../components/GoogleEmailSignInForm";
+import GoogleEmailSignInForm from "../../components/AuthForm/GoogleEmailSignIn";
 import {NavLink} from "react-router-dom";
-import AuthByNumber from "../../components/Auth/AuthByNumber";
+import AuthByNumber from "../../components/AuthForm/AuthByNumber";
 
 
 const SignIn = () => {

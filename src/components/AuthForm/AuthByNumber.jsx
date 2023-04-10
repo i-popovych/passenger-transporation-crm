@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {RecaptchaVerifier, signInWithPhoneNumber} from "firebase/auth";
 import {auth} from "../../index"
-import {Button, Col, Form, Row} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import {AuthUserContext} from "../../App";
 
 
