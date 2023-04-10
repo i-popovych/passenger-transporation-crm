@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import {getDatabase, ref, set} from "firebase/database";
 import {Alert, Col, Container, Form, Row, Spinner} from "react-bootstrap";
 import BaseFormGroup from "../../components/BaseFormGroup";
-import EmailPassForm from "../../components/EmailPassForm";
+import EmailPassSignOutForm from "../../components/EmailPassSignOutForm";
 import GoogleEmailSignOutForm from "../../components/GoogleEmailSignOutForm";
-import {EMAIL_PASS, GOOGLE_EMAIL} from "../../utils/authMethods";
+import {EMAIL_PASS, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
 import {NavLink} from "react-router-dom";
+import AuthByNumber from "../../components/Auth/AuthByNumber";
 
 
 const SignOut = () => {
@@ -42,13 +43,15 @@ const SignOut = () => {
                             <BaseFormGroup setRegData={setRegData} regData={regData}/>
                             <br/>
                             {regMethod === EMAIL_PASS &&
-                                <EmailPassForm
+                                <EmailPassSignOutForm
                                     setRegData={setRegData} regData={regData}
                                     setIsLoading={setIsLoading} setMessage={setMessage}
                                     writeToDB={writeToDB} password={regData.password}/>}
                             {regMethod === GOOGLE_EMAIL && <GoogleEmailSignOutForm
                                 setIsLoading={setIsLoading} setMessage={setMessage}
                                 writeToDB={writeToDB}/>}
+                            {regMethod === NUMBER && <AuthByNumber setIsLoading={setIsLoading} setMessage={setMessage}
+                                                                   isReg={true} writeToDB={writeToDB}/>}
                         </Form>
                     </Col>
                 </Row>
@@ -70,6 +73,11 @@ const SignOut = () => {
                 <Row className="justify-content-md-center">
                     <Col sm={6}>
                         <Alert.Link onClick={() => setRegMethod(GOOGLE_EMAIL)}>Google account registration</Alert.Link>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center mt-2">
+                    <Col sm={6}>
+                        <Alert.Link onClick={() => setRegMethod(NUMBER)}>Registration by number</Alert.Link>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center mt-4">

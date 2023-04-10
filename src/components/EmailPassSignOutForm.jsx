@@ -3,7 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {Context} from "../index";
 
-const EmailPassForm = ({writeToDB, password, setIsLoading, setMessage, regData, setRegData}) => {
+const EmailPassSignOutForm = ({writeToDB, password, setIsLoading, setMessage, regData, setRegData}) => {
     const [email, setEmail] = useState('');
     const {auth} = useContext(Context)
 
@@ -45,4 +45,4 @@ const EmailPassForm = ({writeToDB, password, setIsLoading, setMessage, regData, 
     )
 };
 
-export default EmailPassForm;
+export default EmailPassSignOutForm;
