@@ -14,7 +14,6 @@ const EmailPassSignUp = ({writeToDB, password, setIsLoading, setMessage, regData
             const user = userCredential.user;
             writeToDB(user.uid, {email})
             localStorage.setItem('uid', user.uid)
-            console.log(user)
         } catch (e) {
             setIsLoading(false)
             setMessage("some error :(")

@@ -41,16 +41,19 @@ const App = () => {
         if (jsonFields) setCurrentUser({...jsonFields})
     }
 
-    useEffect(async () => {
-        const uid = localStorage.getItem('uid');
-        if (uid) {
-            try {
-                await setUserDataByUid(uid);
-            } catch (e) {
-                console.log(e)
+    useEffect( () => {
+        const fetch = async () => {
+            const uid = localStorage.getItem('uid');
+            if (uid) {
+                try {
+                    await setUserDataByUid(uid);
+                } catch (e) {
+                    console.log(e)
+                }
             }
+            setIsInitialize(true)
         }
-        setIsInitialize(true)
+        fetch()
     }, [])
 
     if (!isInitialize) return <div className="d-flex justify-content-center"><Spinner/></div>

@@ -44,7 +44,6 @@ const AuthByNumber = ({writeToDB, setIsLoading, setMessage, isReg}) => {
             window.confirmationResult.confirm(otp).then((result) => {
                 debugger
                 const user = result.user;
-                console.log(user)
                 if (isReg) writeToDB(user.uid)
                 else setUserDataByUid(user.uid)
                 setMessage(`You have successfully ${isReg ? 'registered' : 'authorized'}`)

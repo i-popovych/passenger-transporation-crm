@@ -2,7 +2,6 @@ import React from 'react';
 import {Form} from "react-bootstrap";
 
 const BaseFormGroup = ({regData, setRegData}) => {
-    console.log(regData)
     return (
         <>
             <Form.Group controlId="fullName" className="mb-3">

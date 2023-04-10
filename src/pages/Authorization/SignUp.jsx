@@ -15,7 +15,6 @@ const SignUp = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [message, setMessage] = useState(null)
     const [regMethod, setRegMethod] = useState(EMAIL_PASS)
-    console.log(regData)
 
     const setToDB = async (uid, regData) => {
         const db = getDatabase();

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Card, Col, Container, Form, FormSelect, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import {ref, update} from "firebase/database";
 import {deleteUser} from "firebase/auth"
 import {db, auth} from "../index";
@@ -13,7 +13,6 @@ const UserItem = ({uid, ...userData}) => {
 
     const handleUpdate = async (e) => {
         e.preventDefault()
-        console.log(uid)
         try {
             await update(ref(db), {
                 [`/users/${uid}`]: {

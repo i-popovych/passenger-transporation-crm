@@ -3,11 +3,11 @@ import {Context, db} from "../../index";
 import {AuthUserContext} from "../../App";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {Button, Col, Form, Row} from "react-bootstrap";
-import {getDatabase, ref, child, get} from "firebase/database";
+import {child, get, ref} from "firebase/database";
 import config from "../../project-config.json"
 
 const EmailPassSignIn = ({setMessage, setIsLoading}) => {
-    const {auth, firestore} = useContext(Context)
+    const {auth} = useContext(Context)
     const {setCurrentUser} = useContext(AuthUserContext)
 
     const [email, setEmail] = useState('');
@@ -21,7 +21,6 @@ const EmailPassSignIn = ({setMessage, setIsLoading}) => {
             if (snp.exists()) {
                 localStorage.setItem('uid', user.uid)
                 const jsonFields = snp.val();
-                console.log(config.adminEmail)
                 if (user.email === config.adminEmail) jsonFields.role = config.role.admin
                 setCurrentUser({...jsonFields});
             }
