@@ -7,7 +7,7 @@ import {AuthUserContext} from "../../App";
 const provider = new GoogleAuthProvider();
 
 
-const GoogleEmailSignOut = ({writeToDB, setMessage, setIsLoading}) => {
+const GoogleEmailSignUp = ({writeToDB, setMessage, setIsLoading}) => {
     const {auth} = useContext(Context);
     const {setCurrentUser} = useContext(AuthUserContext)
 
@@ -35,4 +35,4 @@ const GoogleEmailSignOut = ({writeToDB, setMessage, setIsLoading}) => {
     )
 };
 
-export default GoogleEmailSignOut;
+export default GoogleEmailSignUp;

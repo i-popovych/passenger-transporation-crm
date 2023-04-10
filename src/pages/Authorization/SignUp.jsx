@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import {getDatabase, ref, set} from "firebase/database";
 import {Alert, Col, Container, Form, Row, Spinner} from "react-bootstrap";
 import BaseFormGroup from "../../components/AuthForm/BaseFormGroup";
-import EmailPassSignOut from "../../components/AuthForm/EmailPassSignOut";
-import GoogleEmailSignOut from "../../components/AuthForm/GoogleEmailSignOut";
-import {EMAIL_PASS, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
+import EmailPassSignUp from "../../components/AuthForm/EmailPassSignUp";
+import GoogleEmailSignUp from "../../components/AuthForm/GoogleEmailSignUp";
+import {EMAIL_PASS, FB, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
 import {NavLink} from "react-router-dom";
 import AuthByNumber from "../../components/AuthForm/AuthByNumber";
+import AuthByFb from "../../components/AuthForm/AuthByFB";
 
 
-const SignOut = () => {
+const SignUp = () => {
     const [regData, setRegData] = useState({password: '', fullName: '', age: '', role: ''})
     const [isLoading, setIsLoading] = useState(false)
     const [message, setMessage] = useState(null)
@@ -35,7 +36,7 @@ const SignOut = () => {
 
     return (
         <>
-            <h1 className="h2 d-flex align-items-center justify-content-center">Sign out</h1>
+            <h1 className="h2 d-flex align-items-center justify-content-center mt-2">Sign up</h1>
             <Container>
                 <Row className="justify-content-md-center">
                     <Col sm={6}>
@@ -43,15 +44,16 @@ const SignOut = () => {
                             <BaseFormGroup setRegData={setRegData} regData={regData}/>
                             <br/>
                             {regMethod === EMAIL_PASS &&
-                                <EmailPassSignOut
+                                <EmailPassSignUp
                                     setRegData={setRegData} regData={regData}
                                     setIsLoading={setIsLoading} setMessage={setMessage}
                                     writeToDB={writeToDB} password={regData.password}/>}
-                            {regMethod === GOOGLE_EMAIL && <GoogleEmailSignOut
+                            {regMethod === GOOGLE_EMAIL && <GoogleEmailSignUp
                                 setIsLoading={setIsLoading} setMessage={setMessage}
                                 writeToDB={writeToDB}/>}
                             {regMethod === NUMBER && <AuthByNumber setIsLoading={setIsLoading} setMessage={setMessage}
                                                                    isReg={true} writeToDB={writeToDB}/>}
+                            {regMethod === FB && <AuthByFb/>}
                         </Form>
                     </Col>
                 </Row>
@@ -67,17 +69,22 @@ const SignOut = () => {
                 }
                 <Row className="justify-content-md-center mb-2 mt-2">
                     <Col sm={6}>
-                        <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>Email and password registration</Alert.Link>
+                        <Alert.Link onClick={() => setRegMethod(EMAIL_PASS)}>Registration with email and password</Alert.Link>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col sm={6}>
-                        <Alert.Link onClick={() => setRegMethod(GOOGLE_EMAIL)}>Google account registration</Alert.Link>
+                        <Alert.Link onClick={() => setRegMethod(GOOGLE_EMAIL)}>Registration with Google account</Alert.Link>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center mt-2">
                     <Col sm={6}>
-                        <Alert.Link onClick={() => setRegMethod(NUMBER)}>Registration by number</Alert.Link>
+                        <Alert.Link onClick={() => setRegMethod(NUMBER)}>Registration with mobile number</Alert.Link>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center mt-2">
+                    <Col sm={6}>
+                        <Alert.Link onClick={() => setRegMethod(FB)}>Registration with Facebook</Alert.Link>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center mt-4">
@@ -90,4 +97,4 @@ const SignOut = () => {
     );
 };
 
-export default SignOut;
+export default SignUp;

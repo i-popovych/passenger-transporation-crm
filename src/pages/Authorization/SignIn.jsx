@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import EmailPassSignIn from "../../components/AuthForm/EmailPassSignIn";
 import {Alert, Col, Container, Row, Spinner} from "react-bootstrap";
-import {EMAIL_PASS, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
+import {EMAIL_PASS, FB, GOOGLE_EMAIL, NUMBER} from "../../utils/authMethods";
 import GoogleEmailSignInForm from "../../components/AuthForm/GoogleEmailSignIn";
 import {NavLink} from "react-router-dom";
 import AuthByNumber from "../../components/AuthForm/AuthByNumber";
@@ -47,17 +47,22 @@ const SignIn = () => {
             }
             <Row className="justify-content-md-center mb-2 mt-2">
                 <Col sm={6}>
-                    <Alert.Link onClick={() => setAuthMethod(EMAIL_PASS)}>Email and password authorization</Alert.Link>
+                    <Alert.Link onClick={() => setAuthMethod(EMAIL_PASS)}>Authorization with email and password</Alert.Link>
                 </Col>
             </Row>
             <Row className="justify-content-md-center mb-2">
                 <Col sm={6}>
-                    <Alert.Link onClick={() => setAuthMethod(GOOGLE_EMAIL)}>Google account authorization</Alert.Link>
+                    <Alert.Link onClick={() => setAuthMethod(GOOGLE_EMAIL)}>Authorization with Google account</Alert.Link>
                 </Col>
             </Row>
             <Row className="justify-content-md-center mb-2">
                 <Col sm={6}>
-                    <Alert.Link onClick={() => setAuthMethod(NUMBER)}>Authorization by number</Alert.Link>
+                    <Alert.Link onClick={() => setAuthMethod(NUMBER)}>Authorization with number</Alert.Link>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col sm={6}>
+                    <Alert.Link onClick={() => setAuthMethod(FB)}>Authorization by number</Alert.Link>
                 </Col>
             </Row>
             <Row className="justify-content-md-center mt-4">

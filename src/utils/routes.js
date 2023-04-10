@@ -1,4 +1,4 @@
-import SignOut from "../pages/Authorization/SignOut";
+import SignUp from "../pages/Authorization/SignUp";
 import SignIn from "../pages/Authorization/SignIn";
 import React from "react";
 import Dashboard from "../pages/Dashboard";
@@ -9,8 +9,9 @@ import PermissionDenied from "../pages/PermissionDenied";
 import {NavLink} from "react-router-dom";
 
 export const publicRoutes = [
-    {path: '/registration', element: <SignOut/>},
+    {path: '/registration', element: <SignUp/>},
     {path: '/login', element: <SignIn/>},
+    {path: '/', element: <Home/>},
 ]
 
 export const adminRoutes = [
