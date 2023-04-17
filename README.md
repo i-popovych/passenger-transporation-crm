@@ -1,3 +1,34 @@
+# Description
+This project was completed as a test task for a company.
+
+The essence of the project is to create a CRM for managing passenger transportation, with each user having three roles: administrator, passenger, and driver.
+A new user can register in the following ways: e-mail and password, Google account and phone number.
+
+After authorization, the user can choose the page he needs from the hamburger menu. <br>
+The driver can create and view trips. <br>
+Passengers can view trips. <br>
+The administrator can delete users, trips, and change the role of the user.
+
+### Technologies used
+JS, HTML, CSS, React, React, React Router DOM, Firebase
+
+# How to use
+
+Go to the [deployed website](https://main.d1lykhyunqjgbv.amplifyapp.com/).
+You can also run the site locally.
+
+You can sign up and use CRM.
+
+To get administrator rights, you must log in with the these email and password:
+
+email: adminexample@gmail.com
+
+password: 12345678
+
+You can change the administrator email in project-config.json.
+
+# 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
